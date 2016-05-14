@@ -1,15 +1,26 @@
 class Node(object):
+    """
+    The building block of the linked list with pointer
+    """
     def __init__(self, value):
         self.value = value
         self.next = None
 
 
 class LinkedList(object):
-    # Positions in this list begin from 1
+    """
+    LinkedList implementation made up of Node objects
+    Postions begin from 1
+    """
     def __init__(self, head=None):
         self.head=None
     
     def append(self, value):
+        """
+        Adds the value to the end of list by creating a new node
+        :param value: The value to be added to the end of list
+        :return: Return nothing
+        """
         node = Node(value)
         if self.head is None:
             self.head = node
@@ -20,6 +31,11 @@ class LinkedList(object):
             current.next = node
             
     def get_position(self, position):
+        """
+        Gets value of Node at specified position in the List
+        :param position: Position from which to return the value
+        :return: Return value if index found, else return None
+        """
         current = self.head
         while current:
             if position == 1:
@@ -29,6 +45,10 @@ class LinkedList(object):
         return None
     
     def display(self):
+        """
+        Displays the list in a human readable format
+        :return: Nothing
+        """
         current = self.head
         while current:
             print current.value, " ", 
@@ -36,6 +56,11 @@ class LinkedList(object):
         print ""
 
     def delete(self, value):
+        """
+        Deletes the first Node with value specified
+        :param value: The value which is to be deleted from the list
+        :return: nothing
+        """
         current = self.head
         if current.value == value:  # Handling Edge case for 1st position
             self.head = current.next
@@ -47,6 +72,13 @@ class LinkedList(object):
             current = current.next
 
     def insert(self, value, position):
+        """
+        Inserts value at specified position, if specified position is out of bounds it simply returns
+
+        :param value: Value to be inserted in the list
+        :param position: Position at which the value is to be inserted
+        :return: returns nothing
+        """
         toinsert = Node(value)
         if position == 1:  # Handling edge case for 1st position
             toinsert.next = self.head
