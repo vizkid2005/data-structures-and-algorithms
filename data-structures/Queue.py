@@ -34,16 +34,27 @@ class Queue(object):
     def dequeue(self):
         """
         Returns the value at the beginning of the queue
-        :return: value at the beginning of the queue
+        :return: value at the beginning of the queue, None if queue is empty
         """
         if self.head is None:
             self.tail = self.head # When queue is empty, head and tail should point to None
-            return
+            return None
         else:
             toremove = self.head
             self.head = self.head.next
             self.length -= 1
             return toremove.value
+
+    def peek(self):
+        """
+        Returns the value in the front of the queue without removing it
+        :return: Value in front of the queue, None if queue is empty
+        """
+        if self.head is None:
+            self.tail = self.head  # When queue is empty, head and tail should point to None
+            return None
+        else:
+            return self.head.value
 
     def display(self):
         """
