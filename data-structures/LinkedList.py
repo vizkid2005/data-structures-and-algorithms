@@ -94,7 +94,6 @@ class LinkedList(object):
             currentposition += 1
             current = current.next
 
-
 def main():
 
     myList = LinkedList()

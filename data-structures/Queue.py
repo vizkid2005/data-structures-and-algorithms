@@ -36,14 +36,16 @@ class Queue(object):
         Returns the value at the beginning of the queue
         :return: value at the beginning of the queue, None if queue is empty
         """
-        if self.head is None:
-            self.tail = self.head # When queue is empty, head and tail should point to None
-            return None
+        toremove = self.head
+        if toremove is None:
+            return
         else:
-            toremove = self.head
-            self.head = self.head.next
+            if self.head.next is None:
+                self.tail = self.head = None
+            else:
+                self.head = self.head.next
             self.length -= 1
-            return toremove.value
+        return toremove.value
 
     def peek(self):
         """
@@ -81,7 +83,7 @@ def main():
 
     myqueue.display()
     print "Length of Queue : ", myqueue.length
-
+    print "Peeking into the queue (Ssshh !!) : ", myqueue.peek()
     myqueue.dequeue()
     myqueue.dequeue()
 
@@ -89,6 +91,10 @@ def main():
     print "Length of Queue : ", myqueue.length
 
     myqueue.dequeue()
+    myqueue.enqueue(100)
+    myqueue.display()
+    print "Length of Queue : ", myqueue.length
+
     myqueue.dequeue()
     myqueue.dequeue()
     myqueue.dequeue()
@@ -101,4 +107,4 @@ def main():
     myqueue.display()
     print "Length of Queue : ", myqueue.length
 
-if __name__ == "__main__": main()
+if __name__ == "__main__" : main()
